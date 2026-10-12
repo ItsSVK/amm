@@ -1,6 +1,7 @@
-skip_local_validator = true
+skip_local_validator = false
 
 [toolchain]
+package_manager = "yarn"
 
 [features]
 resolution = true
@@ -14,6 +15,13 @@ cluster = "localnet"
 wallet = "~/.config/solana/id.json"
 
 [scripts]
-test = "cargo test"
+test = "cargo test --package amm"
+
+[test.validator]
+url = "http://127.0.0.1:8899"
+
+[[test.validator.programs]]
+address = "F3te5tv5fryVxPj3k4X6D7kRbitvPsvFFxq65NtKPn2Z"
+program = "target/deploy/amm.so"
 
 [hooks]

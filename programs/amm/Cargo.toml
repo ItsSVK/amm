@@ -14,22 +14,25 @@ default = []
 cpi = ["no-entrypoint"]
 no-entrypoint = []
 no-log-ix-name = []
-idl-build = ["anchor-lang/idl-build"]
+idl-build = ["anchor-lang/idl-build", "anchor-spl/idl-build"]
 anchor-debug = []
 custom-heap = []
 custom-panic = []
 
 
 [dependencies]
-anchor-lang = "1.2.0"
+anchor-lang = { version = "1.2.1", features = ["init-if-needed"] }
+anchor-spl = "1.2.1"
+constant-product-curve = { git = "https://github.com/deanmlittle/constant-product-curve" }
 
 [dev-dependencies]
-litesvm = "0.10.0"
-solana-message = "3.0.1"
-solana-transaction = "3.0.2"
-solana-signer = "3.0.0"
-solana-keypair = "3.0.1"
+surfpool-sdk = "1.6.1"
+tokio = { version = "1.43.0", features = ["rt-multi-thread", "macros"] }
+solana-message = "4.3"
+solana-transaction = "4.1"
 
 
 [lints.rust]
-unexpected_cfgs = { level = "warn", check-cfg = ['cfg(target_os, values("solana"))'] }
+unexpected_cfgs = { level = "warn", check-cfg = [
+    'cfg(target_os, values("solana"))',
+] }
